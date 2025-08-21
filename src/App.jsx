@@ -1,10 +1,10 @@
 import "./App.css";
-import Box from "./components/Box";
+import Board from "./components/Box";
 
 function App() {
   return (
     <>
-      <Box></Box>
+      <Board></Board>
     </>
   );
 }

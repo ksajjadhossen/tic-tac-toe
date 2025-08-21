@@ -1,36 +1,40 @@
 import { useState } from "react";
-
-export default function Box() {
-  function Square() {
-    const [value, setValue] = useState(null);
-    function handleClick() {
-      setValue("X");
-    }
-    return (
-      <button
-        className="bg-white border border-gray-400 h-12 w-12 m-1 leading-0 text-lg"
-        onClick={handleClick}
-      >
-        {value}
-      </button>
-    );
+function Square({ value, onSquareClick }) {
+  return (
+    <button
+      className="bg-white border border-gray-400 h-12 w-12 m-1 leading-0 text-lg"
+      onClick={onSquareClick}
+    >
+      {value}
+    </button>
+  );
+}
+export default function Board() {
+  const [squares, setSquares] = useState(Array(9).fill(null));
+  function handleClick(i) {
+    const nextSquares = squares.slice();
+    nextSquares[i] = "X";
+    setSquares(nextSquares);
   }
   return (
     <>
       <div className="flex">
-        <Square></Square>
-        <Square></Square>
-        <Square></Square>
+        <Square
+          value={squares[0]}
+          onSquareClick={() => handleClick(0)}
+        ></Square>
+        <Square value={squares[1]}></Square>
+        <Square value={squares[2]}></Square>
       </div>
       <div className="flex">
-        <Square></Square>
-        <Square></Square>
-        <Square></Square>
+        <Square value={squares[3]}></Square>
+        <Square value={squares[4]}></Square>
+        <Square value={squares[5]}></Square>
       </div>
       <div className="flex">
-        <Square></Square>
-        <Square></Square>
-        <Square></Square>
+        <Square value={squares[6]}></Square>
+        <Square value={squares[7]}></Square>
+        <Square value={squares[8]}></Square>
       </div>
     </>
   );
